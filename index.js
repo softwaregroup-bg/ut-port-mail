@@ -2,7 +2,6 @@ var url = require('url');
 var Port = require('ut-bus/port');
 var util = require('util');
 var _ = require('lodash');
-var when = require('when');
 var nodemailer = require('nodemailer');
 var tv4 = require('tv4');
 
@@ -95,6 +94,9 @@ var mailArgsSchema = {
         {required: ['html']},
     ]
 };
+function responseError(err, callback) {
+    return callback({'$$':{'mtid':'error', 'errorCode':'MAIL:' + err.code, 'errorMessage': err.message || ''}});
+}
 
 function Mail() {
     Port.call(this);
@@ -141,52 +143,29 @@ Mail.prototype.start = function start(callback) {
     //bindings
     Port.prototype.start.apply(this, arguments);
     this.pipeExec(this.exec.bind(this), this.config.concurrency);
+    if (this.protocol) {//crate transport based on protocol
+        this.transport = nodemailer.createTransport(this.protocol(this.transportOpts));
+    } else {//crate transport based on service
+        this.transport = nodemailer.createTransport(this.transportOpts);
+    }
 };
 
 Mail.prototype.exec = function(msg, callback) {
-    when.promise(function(resolve, reject) {
-        //connect(e.g. create transport object)
-        if (!this.transport) {
-            if (this.protocol) {//crate transport based on protocol
-                this.transport = nodemailer.createTransport(this.protocol(this.transportOpts));
-            } else {//crate transport based on service
-                this.transport = nodemailer.createTransport(this.transportOpts);
+    var mailArgs = _.clone(msg);
+    delete mailArgs.$$;
+
+    if (tv4.validate(mailArgs, mailArgsSchema, true, true)) {//incoming message gets validated
+        this.transport.sendMail(mailArgs, function(err, responseStatus) {
+            if (err) {
+                responseError({code:'MailSend:' + err.code, message: err.message}, callback);
+            } else {
+                responseStatus.$$ = {mtid: 'response', opcode: msg && msg.$$ && msg.$$.opcode};
+                callback(null, responseStatus);
             }
-        }
-        resolve();
-    }.bind(this))
-    .then(this.send.bind(this, msg))//sends a message
-    .then(function (res) {//return the response to sender
-        res.$$ = {mtid: 'response', opcode: msg && msg.$$ && msg.$$.opcode};
-        callback(null, res);
-    })
-    .catch(function(err) {//trows a error and returns it to sender
-        return callback({'$$':{'mtid':'error', 'errorCode':'MAIL:' + err.code, 'errorMessage': err.message || ''}});
-    });
+        });
+    } else {//incoming message is rejected
+        responseError({code:'InputValidation:' + tv4.error.code, message: [tv4.error.message, 'data path: ' + tv4.error.dataPath].join(';')}, callback);
+    }
 }
-
-Mail.prototype.send = function(msg) {
-    return when.promise(function(resolve, reject) {
-        var mailArgs = _.clone(msg);
-        delete mailArgs.$$;
-
-        if (tv4.validate(mailArgs, mailArgsSchema, true, true)) {//incoming message gets validated
-            resolve(mailArgs);
-        } else {//incoming message is rejected
-            reject({code:'InputValidation:' + tv4.error.code, message: [tv4.error.message, 'data path: ' + tv4.error.dataPath].join(';')});
-        }
-    }.bind(this))
-    .then(function(mailArgs) {
-        return when.promise(function(res, rej) {//try to send the message
-            this.transport.sendMail(mailArgs, function(err, responseStatus) {
-                if (err) {
-                    rej({code:'MailSend:' + err.code, message: err.message});
-                } else {
-                    res(responseStatus);
-                }
-            });
-        }.bind(this))
-    }.bind(this));
-};
 
 module.exports = Mail;
