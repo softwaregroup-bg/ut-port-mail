@@ -1,5 +1,5 @@
 {
-  "name": "ut-port-ldap",
+  "name": "ut-port-mail",
   "version": "5.2.0",
   "dependencies": {
     "lodash": "^3.10.1",
@@ -14,9 +14,9 @@
   "publishConfig": {
     "registry": "http://npm.softwaregroup-bg.com:5001"
   },
-  "description": "UT port ldap module",
+  "description": "UT port mail module",
   "repository": {
     "type": "git",
-    "url": "git@git.softwaregroup-bg.com:ut5/ut-port-ldap.git"
+    "url": "git@git.softwaregroup-bg.com:ut5/ut-port-mail.git"
   }
 }

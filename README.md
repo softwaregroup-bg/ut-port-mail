@@ -8,15 +8,18 @@ The purpose of this port is for sending mails from remote/local servers.
  - `through2` - [GitHub Official Page](https://github.com/rvagg/through2)
  - `lodash` - [Official Page](https://lodash.com/)
 
-In the UT5 implementations the TCP port is initialized in the following manner:
+In the UT5 implementations the Mail port is initialized in the following manner:
 
 ```javascript
     module.exports = {
         id: 'mail',
         type: 'mail',
-        logLevel: 'trace',
-        ssl: false,
-        url: 'ldap://127.0.0.1:1389',
+        url: 'smtp://127.0.0.1:1234',
+        service: 'gmail',
+        ssl: true,
+        auth: {user: 'test@gmail.com', pass: 'test'},
+        namespace: ['mail'],
+        imports: [],
         receive: function(msg) {
             return msg;
         },
@@ -25,3 +28,5 @@ In the UT5 implementations the TCP port is initialized in the following manner:
         }
     }
 ```
+
+all of the properties that can be set can be seen in the Nodemailer github page
