@@ -141,10 +141,6 @@ Mail.prototype.start = function start(callback) {
     //bindings
     Port.prototype.start.apply(this, arguments);
     this.pipeExec(this.exec.bind(this), this.config.concurrency);
-
-    // setTimeout(function(){
-    //     this.exec({from: 'dessi.krasimirova@gmail.com', to: 'opensuser@gmail.com', subject: 'test mail', text: 'texttexttext', attachments: [{path: '/home/zetxx/Desktop/kitykity.txt'}]}, function (err, res){console.log(err || res);});
-    // }.bind(this), 1000);
 };
 
 Mail.prototype.exec = function(msg, callback) {
