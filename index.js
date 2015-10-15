@@ -119,6 +119,8 @@ util.inherits(Mail, Port);
 
 Mail.prototype.init = function init() {
     Port.prototype.init.apply(this, arguments);
+    this.transportOpts = this.config.settings;
+
     if (!this.config.service) {//settings does not hold service variable
         var parsedUrl           = url.parse(this.config.url);
         this.transportOpts.host = parsedUrl.hostname;
@@ -135,8 +137,6 @@ Mail.prototype.init = function init() {
     } else {//service config is set
         this.transportOpts.service = this.config.service;
     }
-    this.transportOpts.secureConnection = this.config.ssl  || false;
-    this.transportOpts.auth             = this.config.auth || {};
 };
 
 Mail.prototype.start = function start(callback) {
@@ -155,6 +155,7 @@ Mail.prototype.exec = function(msg, callback) {
     delete mailArgs.$$;
 
     if (tv4.validate(mailArgs, mailArgsSchema, true, true)) {//incoming message gets validated
+        console.log(this.transportOpts);
         this.transport.sendMail(mailArgs, function(err, responseStatus) {
             if (err) {
                 responseError({code:'MailSend:' + err.code, message: err.message}, callback);
