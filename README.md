@@ -3,7 +3,7 @@ The purpose of this port is for sending mails from remote/local servers.
 
 ### **Technological Dependencies** ###
 
- - `nodemailer` - [GitHub Official Page](https://github.com/whiteout-io/Nodemailer)
+ - `nodemailer` - [GitHub Official Page](https://github.com/andris9/Nodemailer)
  - `ut-bus/port` - TODO add link to documentation
  - `through2` - [GitHub Official Page](https://github.com/rvagg/through2)
  - `lodash` - [Official Page](https://lodash.com/)
@@ -14,12 +14,11 @@ In the UT5 implementations the Mail port is initialized in the following manner:
     module.exports = {
         id: 'mail',
         type: 'mail',
+        logLevel: 'trace',
         url: 'smtp://127.0.0.1:1234',
-        service: 'gmail',
-        ssl: true,
-        auth: {user: 'test@gmail.com', pass: 'test'},
-        namespace: ['mail'],
-        imports: [],
+        service: false,
+        settings: {},//setting that came from mailer module
+        ssl: false,
         receive: function(msg) {
             return msg;
         },

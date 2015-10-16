@@ -110,7 +110,7 @@ function Mail() {
         logLevel: 'trace',
         url: 'smtp://127.0.0.1:1234',
         service: false,
-        auth: {},
+        settings: {},
         ssl: false
     };
 }
