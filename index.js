@@ -1,9 +1,10 @@
 var url = require('url');
 var Port = require('ut-bus/port');
 var util = require('util');
-var _ = require('lodash');
 var nodemailer = require('nodemailer');
 var tv4 = require('tv4');
+var errors = require('./errors');
+var when = require('when');
 
 tv4.addFormat(require('tv4-formats'));
 var mailArgsSchema = {
@@ -91,18 +92,15 @@ var mailArgsSchema = {
     required: ['from', 'to', 'subject'],
     oneOf: [
         {required: ['text']},
-        {required: ['html']},
+        {required: ['html']}
     ]
 };
-function responseError(err, callback) {
-    return callback({'$$':{'mtid':'error', 'errorCode':'MAIL:' + err.code, 'errorMessage': err.message || ''}});
-}
 
 function Mail() {
     Port.call(this);
     this.transportOpts = {};
     this.protocol = false;
-    this.transport;
+    this.transport = false;
 
     this.config = {
         id: 'mail',
@@ -122,17 +120,17 @@ Mail.prototype.init = function init() {
     this.transportOpts = this.config.settings;
 
     if (!this.config.service) {//settings does not hold service variable
-        var parsedUrl           = url.parse(this.config.url);
+        var parsedUrl = url.parse(this.config.url);
         this.transportOpts.host = parsedUrl.hostname;
         this.transportOpts.port = parsedUrl.port;
         //sets the protocol based on protocol that is set in url, for instance smtp://127.0.0.1:3456 will set protocol smtm with dest host 127.0.0.1 on port 3456
         switch (parsedUrl.protocol.slice(0, -1)) {
             case 'direct':
                 this.protocol = require('nodemailer-direct-transport');
-            break;
+                break;
             default:
                 this.protocol = require('nodemailer-smtp-transport');
-            break;
+                break;
         }
     } else {//service config is set
         this.transportOpts.service = this.config.service;
@@ -150,23 +148,21 @@ Mail.prototype.start = function start(callback) {
     }
 };
 
-Mail.prototype.exec = function(msg, callback) {
-    var mailArgs = _.clone(msg);
-    delete mailArgs.$$;
-
-    if (tv4.validate(mailArgs, mailArgsSchema, true, true)) {//incoming message gets validated
-        console.log(this.transportOpts);
-        this.transport.sendMail(mailArgs, function(err, responseStatus) {
-            if (err) {
-                responseError({code:'MailSend:' + err.code, message: err.message}, callback);
-            } else {
-                responseStatus.$$ = {mtid: 'response', opcode: msg && msg.$$ && msg.$$.opcode};
-                callback(null, responseStatus);
-            }
-        });
-    } else {//incoming message is rejected
-        responseError({code:'InputValidation:' + tv4.error.code, message: [tv4.error.message, 'data path: ' + tv4.error.dataPath].join(';')}, callback);
-    }
-}
+Mail.prototype.exec = function(msg) {
+    return when.promise(function(resolve, reject) {
+        if (tv4.validate(msg, mailArgsSchema, true, true)) {
+            //console.log(this.transportOpts);
+            this.transport.sendMail(msg, function(err, responseStatus) {
+                if (err) {
+                    reject(errors.mail(err));
+                } else {
+                    resolve(responseStatus);
+                }
+            });
+        } else {
+            reject(errors.validation(tv4.error));
+        }
+    });
+};
 
 module.exports = Mail;
