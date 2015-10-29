@@ -162,7 +162,7 @@ Mail.prototype.exec = function(msg) {
         } else {
             reject(errors.validation(tv4.error));
         }
-    });
+    }.bind(this));
 };
 
 module.exports = Mail;
