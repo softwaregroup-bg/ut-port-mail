@@ -117,6 +117,7 @@ util.inherits(Mail, Port);
 
 Mail.prototype.init = function init() {
     Port.prototype.init.apply(this, arguments);
+    this.latency = this.counter && this.counter('average', 'lt', 'Latency');
     this.transportOpts = this.config.settings;
 
     if (!this.config.service) {//settings does not hold service variable
@@ -140,12 +141,12 @@ Mail.prototype.init = function init() {
 Mail.prototype.start = function start(callback) {
     //bindings
     Port.prototype.start.apply(this, arguments);
-    this.pipeExec(this.exec.bind(this), this.config.concurrency);
     if (this.protocol) {//crate transport based on protocol
         this.transport = nodemailer.createTransport(this.protocol(this.transportOpts));
     } else {//crate transport based on service
         this.transport = nodemailer.createTransport(this.transportOpts);
     }
+    this.pipeExec(this.exec.bind(this), this.config.concurrency);
 };
 
 Mail.prototype.exec = function(msg) {
