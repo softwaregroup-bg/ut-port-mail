@@ -14,7 +14,7 @@
     "ut-bus": "~5.2.0"
   },
   "devDependencies": {
-    "ut-tools": "0.3.0"
+    "ut-tools": "0.3.1"
   },
   "publishConfig": {
     "registry": "http://npm.softwaregroup-bg.com:5001"
