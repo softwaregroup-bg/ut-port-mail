@@ -13,6 +13,9 @@
   "peerDependencies": {
     "ut-bus": "~5.2.0"
   },
+  "devDependencies": {
+    "ut-tools": "0.3.0"
+  },
   "publishConfig": {
     "registry": "http://npm.softwaregroup-bg.com:5001"
   },
