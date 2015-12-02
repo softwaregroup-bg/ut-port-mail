@@ -120,11 +120,11 @@ Mail.prototype.init = function init() {
     this.latency = this.counter && this.counter('average', 'lt', 'Latency');
     this.transportOpts = this.config.settings;
 
-    if (!this.config.service) {//settings does not hold service variable
+    if (!this.config.service) { // settings does not hold service variable
         var parsedUrl = url.parse(this.config.url);
         this.transportOpts.host = parsedUrl.hostname;
         this.transportOpts.port = parsedUrl.port;
-        //sets the protocol based on protocol that is set in url, for instance smtp://127.0.0.1:3456 will set protocol smtm with dest host 127.0.0.1 on port 3456
+        // sets the protocol based on protocol that is set in url, for instance smtp://127.0.0.1:3456 will set protocol smtm with dest host 127.0.0.1 on port 3456
         switch (parsedUrl.protocol.slice(0, -1)) {
             case 'direct':
                 this.protocol = require('nodemailer-direct-transport');
@@ -133,17 +133,17 @@ Mail.prototype.init = function init() {
                 this.protocol = require('nodemailer-smtp-transport');
                 break;
         }
-    } else {//service config is set
+    } else { // service config is set
         this.transportOpts.service = this.config.service;
     }
 };
 
 Mail.prototype.start = function start(callback) {
-    //bindings
+    // bindings
     Port.prototype.start.apply(this, arguments);
-    if (this.protocol) {//crate transport based on protocol
+    if (this.protocol) { // crate transport based on protocol
         this.transport = nodemailer.createTransport(this.protocol(this.transportOpts));
-    } else {//crate transport based on service
+    } else { // crate transport based on service
         this.transport = nodemailer.createTransport(this.transportOpts);
     }
     this.pipeExec(this.exec.bind(this), this.config.concurrency);
@@ -152,7 +152,7 @@ Mail.prototype.start = function start(callback) {
 Mail.prototype.exec = function(msg) {
     return when.promise(function(resolve, reject) {
         if (tv4.validate(msg, mailArgsSchema, true, true)) {
-            //console.log(this.transportOpts);
+            // console.log(this.transportOpts);
             this.transport.sendMail(msg, function(err, responseStatus) {
                 if (err) {
                     reject(errors.mail(err));
