@@ -1,6 +1,6 @@
 {
   "name": "ut-port-mail",
-  "version": "5.2.1",
+  "version": "5.2.2",
   "dependencies": {
     "errno": "^0.1.4",
     "nodemailer": "~1.8.0",
