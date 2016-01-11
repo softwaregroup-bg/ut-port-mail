@@ -17,7 +17,7 @@ In the UT5 implementations the Mail port is initialized in the following manner:
         logLevel: 'trace',
         url: 'smtp://127.0.0.1:1234',
         service: false,
-        settings: {},//setting that came from node mailer module, they are directly applied
+        settings: {},//setting that came from mailer module
         ssl: false,
         receive: function(msg) {
             return msg;
@@ -29,29 +29,3 @@ In the UT5 implementations the Mail port is initialized in the following manner:
 ```
 
 all of the properties that can be set can be seen in the Nodemailer github page
-
-#### **Gmail example** ####
-
-```javascript
-module.exports = {
-    id: 'mail',
-    type: 'mail',
-    logLevel: 'trace',
-    url: 'smtp://smtp.gmail.com',
-    service: false,
-    settings: {
-        auth: {
-            user: 'user',
-            pass: 'pass'
-        }
-        user: 'user@gmail.com'
-    },//setting that came from node mailer module, they are directly applied
-    ssl: false,
-    receive: function(msg) {
-        return msg;
-    },
-    send: function(msg) {
-        return msg;
-    }
-}
-```
