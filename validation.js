@@ -5,23 +5,23 @@ module.exports = {
         properties: {
             from: {
                 type: 'string',
-                format: 'email'
+                minLength: 5
             },
             to: {
                 type: 'string',
-                format: 'email'
+                minLength: 5
             },
             bcc: {
                 type: 'string',
-                format: 'email'
+                minLength: 5
             },
             cc: {
                 type: 'string',
-                format: 'email'
+                minLength: 5
             },
             replyTo: {
                 type: 'string',
-                format: 'email'
+                minLength: 5
             },
             subject: {
                 type: 'string',
