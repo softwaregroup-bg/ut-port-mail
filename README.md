@@ -44,7 +44,6 @@ module.exports = {
             user: 'user',
             pass: 'pass'
         }
-        user: 'user@gmail.com'
     },//setting that came from node mailer module, they are directly applied
     ssl: false,
     receive: function(msg) {
