@@ -91,11 +91,11 @@ var mailArgsSchema = {
     required: ['from', 'to', 'subject'],
     oneOf: [
         {required: ['text']},
-        {required: ['html']},
+        {required: ['html']}
     ]
 };
 function responseError(err, callback) {
-    return callback({'$$':{'mtid':'error', 'errorCode':'MAIL:' + err.code, 'errorMessage': err.message || ''}});
+    return callback({$$: {mtid: 'error', errorCode: `MAIL: ${err.code}`, errorMessage: err.message || ''}});
 }
 
 function Mail() {
@@ -110,7 +110,7 @@ function Mail() {
         logLevel: 'trace',
         url: 'smtp://127.0.0.1:1234',
         service: false,
-        auth: {},
+        settings: {},
         ssl: false
     };
 }
@@ -121,31 +121,31 @@ Mail.prototype.init = function init() {
     Port.prototype.init.apply(this, arguments);
     this.transportOpts = this.config.settings;
 
-    if (!this.config.service) {//settings does not hold service variable
-        var parsedUrl           = url.parse(this.config.url);
+    if (!this.config.service) { // there is no service property in settings object
+        var parsedUrl = url.parse(this.config.url);
         this.transportOpts.host = parsedUrl.hostname;
         this.transportOpts.port = parsedUrl.port;
-        //sets the protocol based on protocol that is set in url, for instance smtp://127.0.0.1:3456 will set protocol smtm with dest host 127.0.0.1 on port 3456
+        // sets the protocol, based on url-proto, for instance smtp://127.0.0.1:3456 will set protocol smtp with destination host 127.0.0.1 on port 3456
         switch (parsedUrl.protocol.slice(0, -1)) {
             case 'direct':
                 this.protocol = require('nodemailer-direct-transport');
-            break;
+                break;
             default:
                 this.protocol = require('nodemailer-smtp-transport');
-            break;
+                break;
         }
-    } else {//service config is set
+    } else { // service is set
         this.transportOpts.service = this.config.service;
     }
 };
 
 Mail.prototype.start = function start(callback) {
-    //bindings
+    // bindings
     Port.prototype.start.apply(this, arguments);
     this.pipeExec(this.exec.bind(this), this.config.concurrency);
-    if (this.protocol) {//crate transport based on protocol
+    if (this.protocol) { // crate transport based on protocol
         this.transport = nodemailer.createTransport(this.protocol(this.transportOpts));
-    } else {//crate transport based on service
+    } else { // crate transport based on service
         this.transport = nodemailer.createTransport(this.transportOpts);
     }
 };
@@ -154,18 +154,18 @@ Mail.prototype.exec = function(msg, callback) {
     var mailArgs = _.clone(msg);
     delete mailArgs.$$;
 
-    if (tv4.validate(mailArgs, mailArgsSchema, true, true)) {//incoming message gets validated
+    if (tv4.validate(mailArgs, mailArgsSchema, true, true)) { // incoming message gets validated
         this.transport.sendMail(mailArgs, function(err, responseStatus) {
             if (err) {
-                responseError({code:'MailSend:' + err.code, message: err.message}, callback);
+                responseError({code: `MailSend: ${err.code}`, message: err.message}, callback);
             } else {
                 responseStatus.$$ = {mtid: 'response', opcode: msg && msg.$$ && msg.$$.opcode};
                 callback(null, responseStatus);
             }
         });
-    } else {//incoming message is rejected
-        responseError({code:'InputValidation:' + tv4.error.code, message: [tv4.error.message, 'data path: ' + tv4.error.dataPath].join(';')}, callback);
+    } else { // incoming message is rejected
+        responseError({code: 'InputValidation:' + tv4.error.code, message: [tv4.error.message, `data path: ${tv4.error.dataPath}`].join(';')}, callback);
     }
-}
+};
 
 module.exports = Mail;
