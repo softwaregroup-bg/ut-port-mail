@@ -1,6 +1,6 @@
 {
   "name": "ut-port-mail",
-  "version": "5.3.3",
+  "version": "5.3.4",
   "dependencies": {
     "errno": "^0.1.4",
     "nodemailer": "~1.8.0",
@@ -10,6 +10,9 @@
     "tv4-formats": "~1.0.1",
     "when": "~3.7.2"
   },
+  "devDependencies": {
+    "ut-tools": "~1.0.0"
+  },
   "peerDependencies": {
     "ut-bus": "~5.3.0"
   },
@@ -17,6 +20,13 @@
     "registry": "http://npm.softwaregroup-bg.com:5001"
   },
   "description": "UT port mail module",
+  "scripts": {
+    "lint": "ut-lint .",
+    "pre-commit": "npm run lint",
+    "pre-release": "ut-pre-release",
+    "release": "ut-release",
+    "post-release": "ut-post-release"
+  },
   "repository": {
     "type": "git",
     "url": "git@git.softwaregroup-bg.com:ut5/ut-port-mail.git"
