@@ -5,96 +5,9 @@ var nodemailer = require('nodemailer');
 var tv4 = require('tv4');
 var errors = require('./errors');
 var when = require('when');
+var validation = require('./validation');
 
 tv4.addFormat(require('tv4-formats'));
-var mailArgsSchema = {
-    title: 'Mail input fields validation',
-    type: 'object',
-    properties: {
-        from: {
-            type: 'string',
-            format: 'email'
-        },
-        to: {
-            type: 'string',
-            format: 'email'
-        },
-        bcc: {
-            type: 'string',
-            format: 'email'
-        },
-        cc: {
-            type: 'string',
-            format: 'email'
-        },
-        replyTo: {
-            type: 'string',
-            format: 'email'
-        },
-        subject: {
-            type: 'string',
-            minLength: 3
-        },
-        text: {
-            type: 'string',
-            minLength: 10
-        },
-        html: {
-            type: 'string',
-            minLength: 10
-        },
-        headers: {
-            type: 'array'
-        },
-        attachments: {
-            type: 'array',
-            minItems: 1,
-            items: [
-                {
-                    type: 'object',
-                    properties: {
-                        filename: {
-                            type: 'string',
-                            minLength: 2
-                        },
-                        content: {
-                            type: 'string',
-                            minLength: 3
-                        },
-                        path: {
-                            type: 'string',
-                            minLength: 2
-                        },
-                        contentType: {
-                            type: 'string',
-                            minLength: 3
-                        },
-                        encoding: {
-                            type: 'string',
-                            minLength: 2
-                        }
-                    },
-                    additionalProperties: false,
-                    anyOf: [
-                        {required: ['filename']},
-                        {required: ['content']},
-                        {required: ['path']},
-                        {required: ['contentType']},
-                        {required: ['encoding']}
-                    ]
-                }
-            ]
-        },
-        charset: {
-            type: 'string'
-        }
-    },
-    required: ['from', 'to', 'subject'],
-    oneOf: [
-        {required: ['text']},
-        {required: ['html']}
-    ]
-};
 
 function Mail() {
     Port.call(this);
@@ -120,11 +33,11 @@ Mail.prototype.init = function init() {
     this.latency = this.counter && this.counter('average', 'lt', 'Latency');
     this.transportOpts = this.config.settings;
 
-    if (!this.config.service) { // settings does not hold service variable
+    if (!this.config.service) { // if there is no service set explicitly
         var parsedUrl = url.parse(this.config.url);
         this.transportOpts.host = parsedUrl.hostname;
         this.transportOpts.port = parsedUrl.port;
-        // sets the protocol based on protocol that is set in url, for instance smtp://127.0.0.1:3456 will set protocol smtm with dest host 127.0.0.1 on port 3456
+        // sets the protocol, based on url-proto, for instance smtp://127.0.0.1:3456 will set protocol smtp with destination host 127.0.0.1 on port 3456
         switch (parsedUrl.protocol.slice(0, -1)) {
             case 'direct':
                 this.protocol = require('nodemailer-direct-transport');
@@ -151,7 +64,7 @@ Mail.prototype.start = function start(callback) {
 
 Mail.prototype.exec = function(msg) {
     return when.promise(function(resolve, reject) {
-        if (tv4.validate(msg, mailArgsSchema, true, true)) {
+        if (tv4.validate(msg, validation.outgoingMail, true, true)) {
             // console.log(this.transportOpts);
             this.transport.sendMail(msg, function(err, responseStatus) {
                 if (err) {
