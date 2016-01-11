@@ -38,7 +38,7 @@ module.exports = {
     type: 'mail',
     logLevel: 'trace',
     url: 'smtp://smtp.gmail.com',
-    service: false,
+    service: 'gmail',
     settings: {
         auth: {
             user: 'user',
