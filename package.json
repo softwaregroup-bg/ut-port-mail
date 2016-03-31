@@ -3,13 +3,13 @@
   "version": "5.3.5",
   "dependencies": {
     "lodash": "3.10.1",
-    "nodemailer": "~1.8.0",
-    "nodemailer-direct-transport": "~1.0.2",
-    "nodemailer-smtp-transport": "~1.0.3",
-    "tv4": "~1.2.7",
-    "tv4-formats": "~1.0.1",
-    "ut-error": "~5.3.6", 
-    "when": "~3.7.2"
+    "nodemailer": "1.8.0",
+    "nodemailer-direct-transport": "1.0.2",
+    "nodemailer-smtp-transport": "1.0.3",
+    "tv4": "1.2.7",
+    "tv4-formats": "1.0.2",
+    "ut-error": "~5.3.6",
+    "when": "3.7.7"
   },
   "devDependencies": {
     "ut-tools": "^5.3.1"
