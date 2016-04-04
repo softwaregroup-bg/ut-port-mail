@@ -1,6 +1,6 @@
 {
   "name": "ut-port-mail",
-  "version": "5.3.6",
+  "version": "5.3.7",
   "dependencies": {
     "lodash": "3.10.1",
     "nodemailer": "1.8.0",
