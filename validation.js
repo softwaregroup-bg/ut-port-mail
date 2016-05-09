@@ -82,7 +82,7 @@ module.exports = {
             }
         },
         required: ['from', 'to', 'subject'],
-        oneOf: [
+        anyOf: [
             {required: ['text']},
             {required: ['html']}
         ]
