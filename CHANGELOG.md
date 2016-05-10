@@ -1,3 +1,13 @@
+<a name="5.3.9"></a>
+## [5.3.9](https://git.softwaregroup-bg.com/ut5/ut-port-mail/compare/v5.3.8...v5.3.9) (2016-05-10)
+
+
+### Bug Fixes
+
+* **validation:** Email with both text and html alternatives should be allowed.([1b4abda](https://git.softwaregroup-bg.com/ut5/ut-port-mail/commit/1b4abda))
+
+
+
 <a name="5.3.8"></a>
 ## [5.3.8](https://git.softwaregroup-bg.com/ut5/ut-port-mail/compare/v5.3.7...v5.3.8) (2016-04-15)
 
