@@ -1,4 +1,4 @@
-var assign = require('lodash/object/assign');
+var assign = require('lodash.assign');
 var Mail = require('../index');
 var mail = assign(new Mail(), {
     config: {

@@ -2,7 +2,7 @@
   "name": "ut-port-mail",
   "version": "5.3.9",
   "dependencies": {
-    "lodash": "3.10.1",
+    "lodash.assign": "4.0.9",
     "nodemailer": "1.8.0",
     "nodemailer-direct-transport": "1.0.2",
     "nodemailer-smtp-transport": "1.0.3",
