@@ -1,21 +1,21 @@
 {
   "name": "ut-port-mail",
-  "version": "5.3.11",
+  "version": "5.4.0",
   "dependencies": {
     "lodash.assign": "4.0.9",
-    "nodemailer": "1.8.0",
-    "nodemailer-direct-transport": "1.0.2",
-    "nodemailer-smtp-transport": "1.0.3",
+    "nodemailer": "2.5.0",
+    "nodemailer-direct-transport": "3.2.0",
+    "nodemailer-smtp-transport": "2.6.0",
     "tv4": "1.2.7",
-    "tv4-formats": "1.0.2",
-    "ut-error": "^5.3.10",
+    "tv4-formats": "2.1.0",
+    "ut-error": "^5.3.12",
     "when": "3.7.7"
   },
   "devDependencies": {
-    "ut-tools": "^5.3.13"
+    "ut-tools": "^5.4.1"
   },
   "peerDependencies": {
-    "ut-bus": "~5.3.0"
+    "ut-bus": "~5.4.2"
   },
   "publishConfig": {
     "registry": "https://nexus.softwaregroup-bg.com/repository/npm-internal"
