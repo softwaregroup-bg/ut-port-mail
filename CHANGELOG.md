@@ -1,3 +1,13 @@
+<a name="5.4.3"></a>
+## [5.4.3](https://github.com/softwaregroup-bg/ut-port-mail/compare/v5.4.2...v5.4.3) (2016-08-12)
+
+
+### Bug Fixes
+
+* publish to npm ([a2bc4d8](https://github.com/softwaregroup-bg/ut-port-mail/commit/a2bc4d8))
+
+
+
 <a name="5.4.2"></a>
 ## [5.4.2](https://git.softwaregroup-bg.com/ut5/ut-port-mail/compare/v5.4.1...v5.4.2) (2016-07-26)
 
