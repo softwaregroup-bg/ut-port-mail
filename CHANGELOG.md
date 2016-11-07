@@ -1,3 +1,13 @@
+<a name="5.4.6"></a>
+## [5.4.6](https://github.com/softwaregroup-bg/ut-port-mail/compare/v5.4.5...v5.4.6) (2016-11-07)
+
+
+### Bug Fixes
+
+* remove dependency to when.js ([5c9a57e](https://github.com/softwaregroup-bg/ut-port-mail/commit/5c9a57e))
+
+
+
 <a name="5.4.5"></a>
 ## [5.4.5](https://github.com/softwaregroup-bg/ut-port-mail/compare/v5.4.4...v5.4.5) (2016-09-21)
 
