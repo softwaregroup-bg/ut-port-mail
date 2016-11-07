@@ -8,8 +8,7 @@
     "nodemailer-smtp-transport": "2.6.0",
     "tv4": "1.2.7",
     "tv4-formats": "2.1.0",
-    "ut-error": "^5.3.12",
-    "when": "3.7.7"
+    "ut-error": "^5.3.12"
   },
   "devDependencies": {
     "ut-tools": "^5.6.0"

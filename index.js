@@ -4,7 +4,6 @@ var util = require('util');
 var nodemailer = require('nodemailer');
 var tv4 = require('tv4');
 var errors = require('./errors');
-var when = require('when');
 var validation = require('./validation');
 
 tv4.addFormat(require('tv4-formats'));
@@ -63,7 +62,7 @@ Mail.prototype.start = function start(callback) {
 };
 
 Mail.prototype.exec = function(msg) {
-    return when.promise(function(resolve, reject) {
+    return new Promise(function(resolve, reject) {
         if (tv4.validate(msg, validation.outgoingMail, true, true)) {
             // console.log(this.transportOpts);
             this.transport.sendMail(msg, function(err, responseStatus) {
