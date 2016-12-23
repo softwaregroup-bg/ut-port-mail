@@ -2,19 +2,19 @@
   "name": "ut-port-mail",
   "version": "5.4.6",
   "dependencies": {
-    "lodash.assign": "4.0.9",
-    "nodemailer": "2.5.0",
-    "nodemailer-direct-transport": "3.2.0",
-    "nodemailer-smtp-transport": "2.6.0",
+    "lodash.assign": "4.2.0",
+    "nodemailer": "2.7.0",
+    "nodemailer-direct-transport": "3.3.2",
+    "nodemailer-smtp-transport": "2.7.2",
     "tv4": "1.2.7",
-    "tv4-formats": "2.1.0",
-    "ut-error": "^5.3.12"
+    "tv4-formats": "2.2.1",
+    "ut-error": "^5.3.16"
   },
   "devDependencies": {
-    "ut-tools": "^5.6.0"
+    "ut-tools": "^5.11.1"
   },
   "peerDependencies": {
-    "ut-bus": "~5.4.2"
+    "ut-bus": "~5.8.0"
   },
   "description": "UT port mail module",
   "scripts": {
