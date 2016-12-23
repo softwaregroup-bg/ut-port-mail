@@ -1,3 +1,13 @@
+<a name="5.5.0"></a>
+# [5.5.0](https://github.com/softwaregroup-bg/ut-port-mail/compare/v5.4.6...v5.5.0) (2016-12-23)
+
+
+### Features
+
+* update dependencies ([cb40df0](https://github.com/softwaregroup-bg/ut-port-mail/commit/cb40df0))
+
+
+
 <a name="5.4.6"></a>
 ## [5.4.6](https://github.com/softwaregroup-bg/ut-port-mail/compare/v5.4.5...v5.4.6) (2016-11-07)
 
