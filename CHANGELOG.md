@@ -1,3 +1,13 @@
+<a name="5.5.1"></a>
+## [5.5.1](https://github.com/softwaregroup-bg/ut-port-mail/compare/v5.5.0...v5.5.1) (2017-03-08)
+
+
+### Bug Fixes
+
+* dependencies ([7e0a69f](https://github.com/softwaregroup-bg/ut-port-mail/commit/7e0a69f))
+
+
+
 <a name="5.5.0"></a>
 # [5.5.0](https://github.com/softwaregroup-bg/ut-port-mail/compare/v5.4.6...v5.5.0) (2016-12-23)
 
