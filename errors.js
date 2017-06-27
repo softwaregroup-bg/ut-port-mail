@@ -1,13 +1,14 @@
 var create = require('ut-error').define;
 
-var PortMail = create('PortMail', undefined, 'Mail sending error');
-var Validation = create('Validation', PortMail, 'Mail validation error');
+const PortMail = create('PortMail', undefined, 'Mail sending error');
+const Validation = create('Validation', PortMail, 'Mail validation error');
+const PortMailClient = create('PortMailClient', PortMail);
 
 module.exports = {
-    mail: function(cause) {
-        return new PortMail(cause);
-    },
-    validation: function(cause) {
-        return new Validation(cause);
-    }
+    mail: cause => new PortMail(cause),
+    validation: cause => new Validation(cause),
+    badConstructorClientParams: create('badConstructorClientParams', PortMailClient, 'Bad client mail constructor params'),
+    invalidCredentials: create('invalidCredentials', PortMailClient, 'Invalid credentials'),
+    unknownError: create('unknownError', PortMailClient, 'Unknown error'),
+    badMailOptionsParams: create('badMailOptionsParams', PortMailClient, 'Bad mail options params')
 };
