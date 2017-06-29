@@ -1,7 +1,7 @@
 const nodemailer = require('nodemailer');
 const Joi = require('joi');
-var validations = require('./validations');
-var errors = require('../../../errors');
+var validations = require('./validation');
+var errors = require('./errors');
 
 const serviceMapper = {
     gmail: 'Gmail'
@@ -47,34 +47,6 @@ function MailClient(params) {
         throw errors.badConstructorClientParams(validParams.error.message);
     }
 }
-
-/**
- * Test Mail connection by sending email to the email used for authentication
- *
- * @return {Object} promise
- */
-MailClient.prototype.testConnection = function() {
-    let mailOptions = {
-        from: this.transportParams.auth.user,
-        to: this.transportParams.auth.user,
-        subject: 'Test connection',
-        text: 'Test connection',
-        html: '<b>Test connection</b>'
-    };
-
-    return new Promise((resolve, reject) => {
-        this.transporter.sendMail(mailOptions, (error, info) => {
-            if (error) {
-                reject(handleError(error));
-            } else {
-                resolve({
-                    messageId: info.messageId,
-                    response: info.response
-                });
-            }
-        });
-    });
-};
 
 /**
  * Send email
