@@ -1,90 +1,49 @@
+const Joi = require('joi');
+
+/**
+ * Joi validation schema used to validate constructor params object
+ */
+const validationConstructorClientSchema = Joi.object().keys({
+    service: Joi.string().valid('gmail').required(),
+    host: Joi.string().required(),
+    port: Joi.number().integer().allow(null),
+    secure: Joi.boolean().allow(null),
+    auth: Joi.object().keys({
+        user: Joi.string().required(),
+        pass: Joi.string().required()
+    }).required()
+});
+
+/**
+ * Joi validation schema used to validate mailOptions object
+ */
+const validateMailOptionsSchema = Joi.object().keys({
+    from: Joi.string().required().min(5),
+    to: Joi.string().required().min(5),
+    subject: Joi.string().required().min(3),
+    text: Joi.string().required().min(10),
+    html: Joi.string().min(10),
+    cc: Joi.string().min(5),
+    bcc: Joi.string().min(5),
+    replyTo: Joi.string().min(5),
+    headers: Joi.array().items(
+        Joi.object().keys({
+            key: Joi.string().required().min(2),
+            value: Joi.string().required().min(3)
+        })
+    ),
+    attachments: Joi.array().items(
+        Joi.object().keys({
+            filename: Joi.string().required().min(2),
+            content: Joi.string().required().min(3),
+            path: Joi.string().required().min(2),
+            contentType: Joi.string().required().min(3),
+            encoding: Joi.string().required().min(2)
+        })
+    )
+});
+
 module.exports = {
-    outgoingMail: {
-        title: 'Mail input fields validation',
-        type: 'object',
-        properties: {
-            from: {
-                type: 'string',
-                minLength: 5
-            },
-            to: {
-                type: 'string',
-                minLength: 5
-            },
-            bcc: {
-                type: 'string',
-                minLength: 5
-            },
-            cc: {
-                type: 'string',
-                minLength: 5
-            },
-            replyTo: {
-                type: 'string',
-                minLength: 5
-            },
-            subject: {
-                type: 'string',
-                minLength: 3
-            },
-            text: {
-                type: 'string',
-                minLength: 10
-            },
-            html: {
-                type: 'string',
-                minLength: 10
-            },
-            headers: {
-                type: 'array'
-            },
-            attachments: {
-                type: 'array',
-                minItems: 1,
-                items: [
-                    {
-                        type: 'object',
-                        properties: {
-                            filename: {
-                                type: 'string',
-                                minLength: 2
-                            },
-                            content: {
-                                type: 'string',
-                                minLength: 3
-                            },
-                            path: {
-                                type: 'string',
-                                minLength: 2
-                            },
-                            contentType: {
-                                type: 'string',
-                                minLength: 3
-                            },
-                            encoding: {
-                                type: 'string',
-                                minLength: 2
-                            }
-                        },
-                        additionalProperties: false,
-                        anyOf: [
-                            {required: ['filename']},
-                            {required: ['content']},
-                            {required: ['path']},
-                            {required: ['contentType']},
-                            {required: ['encoding']}
-                        ]
-                    }
-                ]
-            },
-            charset: {
-                type: 'string'
-            }
-        },
-        required: ['from', 'to', 'subject'],
-        anyOf: [
-            {required: ['text']},
-            {required: ['html']}
-        ]
-    }
+    validationConstructorClientSchema,
+    validateMailOptionsSchema
 };

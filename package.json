@@ -3,12 +3,11 @@
   "version": "5.5.7",
   "dependencies": {
     "lodash.assign": "4.2.0",
-    "nodemailer": "2.7.0",
+    "nodemailer": "4.0.1",
     "nodemailer-direct-transport": "3.3.2",
-    "nodemailer-smtp-transport": "2.7.2",
-    "tv4": "1.2.7",
-    "tv4-formats": "2.2.1",
-    "ut-error": "^5.4.0"
+    "nodemailer-smtp-transport": "2.7.4",
+    "ut-error": "^5.4.0",
+    "joi": "10.0.6"
   },
   "devDependencies": {
     "ut-tools": "^5.13.5"
