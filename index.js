@@ -21,6 +21,7 @@ util.inherits(MailPort, Port);
 
 MailPort.prototype.init = function init() {
     Port.prototype.init.apply(this, arguments);
+    this.latency = this.counter && this.counter('average', 'lt', 'Latency');
     mailClientHelpers = new MailClientHelpers();
 };
 
