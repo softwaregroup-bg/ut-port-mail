@@ -1,3 +1,26 @@
+<a name="6.0.0"></a>
+# [6.0.0](https://github.com/softwaregroup-bg/ut-port-mail/compare/v5.5.7...v6.0.0) (2017-06-30)
+
+
+### Features
+
+* improve mailing logic ([ac23692](https://github.com/softwaregroup-bg/ut-port-mail/commit/ac23692))
+
+
+### BREAKING CHANGES
+
+* ABT-1762
+* pass mail options on send
+BREAKING CHANGE
+
+* ABT-1762: update joi validations
+
+* ABT-1762: bump nodemailer module version
+
+* ABT-1762: revert latency port property
+
+
+
 <a name="5.5.7"></a>
 ## [5.5.7](https://github.com/softwaregroup-bg/ut-port-mail/compare/v5.5.6...v5.5.7) (2017-05-22)
 
