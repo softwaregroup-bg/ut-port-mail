@@ -38,7 +38,7 @@ const validateMailOptionsSchema = Joi.object().keys({
             content: Joi.string().required().min(3),
             path: Joi.string().required().min(2),
             contentType: Joi.string().required().min(3),
-            encoding: Joi.string().required.min(2)
+            encoding: Joi.string().required().min(2)
         })
     )
 });
