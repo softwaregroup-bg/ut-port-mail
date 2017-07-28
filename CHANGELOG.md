@@ -1,3 +1,13 @@
+<a name="6.0.1"></a>
+## [6.0.1](https://github.com/softwaregroup-bg/ut-port-mail/compare/v6.0.0...v6.0.1) (2017-07-28)
+
+
+### Bug Fixes
+
+* unknow error handling ([#3](https://github.com/softwaregroup-bg/ut-port-mail/issues/3)) ([4a3ac7f](https://github.com/softwaregroup-bg/ut-port-mail/commit/4a3ac7f))
+
+
+
 <a name="6.0.0"></a>
 # [6.0.0](https://github.com/softwaregroup-bg/ut-port-mail/compare/v5.5.7...v6.0.0) (2017-06-30)
 
