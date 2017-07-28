@@ -28,7 +28,7 @@ In the UT5 implementations the Mail port is initialized in the following manner:
     }
 ```
 
-all of the properties that can be set can be seen in the Nodemailer github page
+all of the properties that can be set can be seen in the Nodemailer github page.
 
 #### **Gmail example** ####
 
