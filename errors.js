@@ -9,6 +9,6 @@ module.exports = {
     validation: cause => new Validation(cause),
     badConstructorClientParams: create('badConstructorClientParams', PortMailClient, 'Bad client mail constructor params'),
     invalidCredentials: create('invalidCredentials', PortMailClient, 'Invalid credentials'),
-    unknownError: create('unknownError', PortMailClient, 'Unknown error'),
+    unknownError: (cause) => create('unknownError', PortMailClient, cause || 'Unknown error'),
     badMailOptionsParams: create('badMailOptionsParams', PortMailClient, 'Bad mail options params')
 };
