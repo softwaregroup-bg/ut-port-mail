@@ -83,7 +83,7 @@ function handleError(error) {
     if (error.code === 'EAUTH') {
         return errors.invalidCredentials();
     } else {
-        return error.unknownError();
+        return errors.unknownError(error.message);
     }
 }
 
