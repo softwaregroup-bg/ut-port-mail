@@ -8,10 +8,7 @@ module.exports = function({parent}) {
         this.config = merge({
             id: null,
             type: 'mail',
-            logLevel: 'info',
-            service: false,
-            settings: {},
-            ssl: false
+            logLevel: 'info'
         }, config);
     }
 
@@ -28,18 +25,27 @@ module.exports = function({parent}) {
         this.pull(this.exec);
     };
 
-    MailPort.prototype.exec = function({service, host, url, port, secure, username, auth, password, from, to, subject, text, html, cc, bcc, replyTo, headers}) {
-        let mailClient = new MailClient({
+    MailPort.prototype.exec = function({
+        service = this.config.service,
+        host = this.config.host,
+        url = this.config.url,
+        port = this.config.port,
+        secure = this.config.secure,
+        username = this.config.username,
+        password = this.config.password,
+        from, to, subject, text, html, cc, bcc, replyTo, headers
+    }) {
+        return new MailClient({
             service,
-            host: host || url,
+            host,
+            url,
             port,
             secure,
             auth: {
-                user: username || auth ? auth.user : null,
-                pass: password || auth ? auth.pass : null
+                user: username,
+                pass: password
             }
-        });
-        return mailClient.send({
+        }).send({
             from,
             to,
             subject,
@@ -49,9 +55,6 @@ module.exports = function({parent}) {
             bcc,
             replyTo,
             headers
-        })
-        .catch(error => {
-            throw error;
         });
     };
 

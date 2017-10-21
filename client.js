@@ -44,7 +44,7 @@ function MailClient(params) {
         };
         this.transporter = nodemailer.createTransport(this.transportParams);
     } else {
-        throw errors.badConstructorClientParams(validParams.error.message);
+        throw errors.badConstructorClientParams(validParams.error);
     }
 }
 
@@ -68,7 +68,7 @@ MailClient.prototype.send = function(mailOptions) {
                 }
             });
         } else {
-            reject(errors.badMailOptionsParams(validMailOptions.error.message));
+            reject(errors.badMailOptionsParams(validMailOptions.error));
         }
     });
 };
@@ -81,9 +81,9 @@ MailClient.prototype.send = function(mailOptions) {
  */
 function handleError(error) {
     if (error.code === 'EAUTH') {
-        return errors.invalidCredentials();
+        return errors.invalidCredentials(error);
     } else {
-        return errors.unknownError(error.message);
+        return errors.clientError(error);
     }
 }
 

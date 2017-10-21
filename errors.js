@@ -7,6 +7,6 @@ module.exports = {
     validation: create('Validation', PortMail, 'Mail validation error'),
     badConstructorClientParams: create('badConstructorClientParams', PortMailClient, 'Bad client mail constructor params'),
     invalidCredentials: create('invalidCredentials', PortMailClient, 'Invalid credentials'),
-    unknownError: create('unknownError', PortMailClient, 'Unknown error'),
+    clientError: create('error', PortMailClient, 'Email client error'),
     badMailOptionsParams: create('badMailOptionsParams', PortMailClient, 'Bad mail options params')
 };
