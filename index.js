@@ -1,44 +1,59 @@
-const Port = require('ut-bus/port');
+const merge = require('lodash.merge');
 const util = require('util');
 const MailClient = require('./client');
-const { MailClientHelpers } = require('./helpers');
 
-var mailClientHelpers;
+module.exports = function({parent}) {
+    function MailPort({config}) {
+        parent && parent.apply(this, arguments);
+        this.config = merge({
+            id: null,
+            type: 'mail',
+            logLevel: 'info',
+            service: false,
+            settings: {},
+            ssl: false
+        }, config);
+    }
 
-function MailPort() {
-    Port.call(this);
-    this.config = {
-        id: 'mail',
-        type: 'mail',
-        logLevel: 'trace',
-        service: false,
-        settings: {},
-        ssl: false
+    if (parent) {
+        util.inherits(MailPort, parent);
+    }
+
+    MailPort.prototype.init = function init() {
+        parent && parent.prototype.init.apply(this, arguments);
     };
-}
 
-util.inherits(MailPort, Port);
+    MailPort.prototype.start = function start(callback) {
+        parent && parent.prototype.start.apply(this, arguments);
+        this.pull(this.exec);
+    };
 
-MailPort.prototype.init = function init() {
-    Port.prototype.init.apply(this, arguments);
-    this.latency = this.counter && this.counter('average', 'lt', 'Latency');
-    mailClientHelpers = new MailClientHelpers();
-};
-
-MailPort.prototype.start = function start(callback) {
-    // bindings
-    Port.prototype.start.apply(this, arguments);
-    this.pipeExec(this.exec.bind(this), this.config.concurrency);
-};
-
-MailPort.prototype.exec = function(msg) {
-    var mailClient = new MailClient(mailClientHelpers.parseMailClientCreateParams(msg));
-    var mailOptions = mailClientHelpers.parseMailOptionsParams(msg);
-    return mailClient.send(mailOptions)
-        .then(emailSendResponse => emailSendResponse)
+    MailPort.prototype.exec = function({service, host, url, port, secure, username, auth, password, from, to, subject, text, html, cc, bcc, replyTo, headers}) {
+        let mailClient = new MailClient({
+            service,
+            host: host || url,
+            port,
+            secure,
+            auth: {
+                user: username || auth ? auth.user : null,
+                pass: password || auth ? auth.pass : null
+            }
+        });
+        return mailClient.send({
+            from,
+            to,
+            subject,
+            text,
+            html: html || text,
+            cc,
+            bcc,
+            replyTo,
+            headers
+        })
         .catch(error => {
             throw error;
         });
-};
+    };
 
-module.exports = MailPort;
+    return MailPort;
+};

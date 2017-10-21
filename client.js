@@ -1,7 +1,7 @@
 const nodemailer = require('nodemailer');
 const Joi = require('joi');
-var validations = require('./validation');
-var errors = require('./errors');
+const validations = require('./validation');
+const errors = require('./errors');
 
 const serviceMapper = {
     gmail: 'Gmail'
@@ -16,7 +16,7 @@ const serviceMapper = {
  * @returns {Object}
  */
 function validateParamsAgainstSchema(params, schema) {
-    var result = Joi.validate(params, schema);
+    let result = Joi.validate(params, schema);
     return result;
 }
 
@@ -26,10 +26,10 @@ function validateParamsAgainstSchema(params, schema) {
  * @param {Object} params
  */
 function MailClient(params) {
-    var validParams = validateParamsAgainstSchema(params, validations.validationConstructorClientSchema);
+    let validParams = validateParamsAgainstSchema(params, validations.validationConstructorClientSchema);
     if (!validParams.error) {
-        var port = this.port || 465;
-        var secure = true;
+        let port = this.port || 465;
+        let secure = true;
         if (typeof params.secure === 'boolean') {
             secure = params.secure;
         } else {
@@ -55,7 +55,7 @@ function MailClient(params) {
  */
 MailClient.prototype.send = function(mailOptions) {
     return new Promise((resolve, reject) => {
-        var validMailOptions = validateParamsAgainstSchema(mailOptions, validations.validateMailOptionsSchema);
+        let validMailOptions = validateParamsAgainstSchema(mailOptions, validations.validateMailOptionsSchema);
         if (!validMailOptions.error) {
             this.transporter.sendMail(mailOptions, (error, info) => {
                 if (error) {
