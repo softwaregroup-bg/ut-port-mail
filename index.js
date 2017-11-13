@@ -16,10 +16,6 @@ module.exports = function({parent}) {
         util.inherits(MailPort, parent);
     }
 
-    MailPort.prototype.init = function init() {
-        parent && parent.prototype.init.apply(this, arguments);
-    };
-
     MailPort.prototype.start = function start(callback) {
         parent && parent.prototype.start.apply(this, arguments);
         this.pull(this.exec);
