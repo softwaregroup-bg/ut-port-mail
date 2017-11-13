@@ -6,7 +6,6 @@
     "nodemailer": "4.2.0",
     "nodemailer-direct-transport": "3.3.2",
     "nodemailer-smtp-transport": "2.7.4",
-    "ut-error": "^5.4.9",
     "joi": "10.0.6"
   },
   "devDependencies": {

@@ -1,6 +1,7 @@
 const merge = require('lodash.merge');
 const util = require('util');
 const MailClient = require('./client');
+let errors;
 
 module.exports = function({parent}) {
     function MailPort({config}) {
@@ -10,6 +11,7 @@ module.exports = function({parent}) {
             type: 'mail',
             logLevel: 'info'
         }, config);
+        errors = errors || require('./errors')(this.defineError);
     }
 
     if (parent) {
@@ -30,7 +32,7 @@ module.exports = function({parent}) {
         username = this.config.username,
         password = this.config.password,
         from, to, subject, text, html, cc, bcc, replyTo, headers
-    }) {
+    }, errors) {
         return new MailClient({
             service,
             host,

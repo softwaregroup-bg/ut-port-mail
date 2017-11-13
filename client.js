@@ -1,7 +1,6 @@
 const nodemailer = require('nodemailer');
 const Joi = require('joi');
 const validations = require('./validation');
-const errors = require('./errors');
 
 const serviceMapper = {
     gmail: 'Gmail'
@@ -25,7 +24,8 @@ function validateParamsAgainstSchema(params, schema) {
  *
  * @param {Object} params
  */
-function MailClient(params) {
+function MailClient(params, errors) {
+    this.errors = errors;
     let validParams = validateParamsAgainstSchema(params, validations.validationConstructorClientSchema);
     if (!validParams.error) {
         let port = this.port || 465;
@@ -68,7 +68,7 @@ MailClient.prototype.send = function(mailOptions) {
                 }
             });
         } else {
-            reject(errors.badMailOptionsParams(validMailOptions.error));
+            reject(this.errors.badMailOptionsParams(validMailOptions.error));
         }
     });
 };
@@ -81,9 +81,9 @@ MailClient.prototype.send = function(mailOptions) {
  */
 function handleError(error) {
     if (error.code === 'EAUTH') {
-        return errors.invalidCredentials(error);
+        return this.errors.invalidCredentials(error);
     } else {
-        return errors.clientError(error);
+        return this.errors.clientError(error);
     }
 }
 
