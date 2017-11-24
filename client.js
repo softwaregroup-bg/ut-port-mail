@@ -59,7 +59,7 @@ MailClient.prototype.send = function(mailOptions) {
         if (!validMailOptions.error) {
             this.transporter.sendMail(mailOptions, (error, info) => {
                 if (error) {
-                    reject(handleError(error));
+                    reject(handleError.call(this, error));
                 } else {
                     resolve({
                         messageId: info.messageId,
