@@ -32,7 +32,7 @@ module.exports = function({parent}) {
         username = this.config.username,
         password = this.config.password,
         from, to, subject, text, html, cc, bcc, replyTo, headers
-    }, errors) {
+    }) {
         return new MailClient({
             service,
             host,
@@ -43,7 +43,7 @@ module.exports = function({parent}) {
                 user: username,
                 pass: password
             }
-        }).send({
+        }, errors).send({
             from,
             to,
             subject,
