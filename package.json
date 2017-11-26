@@ -1,6 +1,6 @@
 {
   "name": "ut-port-mail",
-  "version": "7.0.0-ut6.5",
+  "version": "7.0.0-ut6.6",
   "dependencies": {
     "lodash.assign": "4.2.0",
     "lodash.merge": "4.6.0",
