@@ -1,3 +1,13 @@
+<a name="7.0.0"></a>
+# [7.0.0](https://github.com/softwaregroup-bg/ut-port-mail/compare/v6.0.1...v7.0.0) (2017-12-06)
+
+
+### Bug Fixes
+
+* remove ut-bus dependency, use es6 ([f89caea](https://github.com/softwaregroup-bg/ut-port-mail/commit/f89caea))
+
+
+
 <a name="6.0.1"></a>
 ## [6.0.1](https://github.com/softwaregroup-bg/ut-port-mail/compare/v6.0.0...v6.0.1) (2017-07-28)
 
