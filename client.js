@@ -1,7 +1,6 @@
 const nodemailer = require('nodemailer');
 const Joi = require('joi');
-var validations = require('./validation');
-var errors = require('./errors');
+const validations = require('./validation');
 
 const serviceMapper = {
     gmail: 'Gmail'
@@ -16,7 +15,7 @@ const serviceMapper = {
  * @returns {Object}
  */
 function validateParamsAgainstSchema(params, schema) {
-    var result = Joi.validate(params, schema);
+    let result = Joi.validate(params, schema);
     return result;
 }
 
@@ -25,11 +24,12 @@ function validateParamsAgainstSchema(params, schema) {
  *
  * @param {Object} params
  */
-function MailClient(params) {
-    var validParams = validateParamsAgainstSchema(params, validations.validationConstructorClientSchema);
+function MailClient(params, errors) {
+    this.errors = errors;
+    let validParams = validateParamsAgainstSchema(params, validations.validationConstructorClientSchema);
     if (!validParams.error) {
-        var port = this.port || 465;
-        var secure = true;
+        let port = this.port || 465;
+        let secure = true;
         if (typeof params.secure === 'boolean') {
             secure = params.secure;
         } else {
@@ -44,7 +44,7 @@ function MailClient(params) {
         };
         this.transporter = nodemailer.createTransport(this.transportParams);
     } else {
-        throw errors.badConstructorClientParams(validParams.error.message);
+        throw errors.badConstructorClientParams(validParams.error);
     }
 }
 
@@ -55,11 +55,11 @@ function MailClient(params) {
  */
 MailClient.prototype.send = function(mailOptions) {
     return new Promise((resolve, reject) => {
-        var validMailOptions = validateParamsAgainstSchema(mailOptions, validations.validateMailOptionsSchema);
+        let validMailOptions = validateParamsAgainstSchema(mailOptions, validations.validateMailOptionsSchema);
         if (!validMailOptions.error) {
             this.transporter.sendMail(mailOptions, (error, info) => {
                 if (error) {
-                    reject(handleError(error));
+                    reject(handleError.call(this, error));
                 } else {
                     resolve({
                         messageId: info.messageId,
@@ -68,7 +68,7 @@ MailClient.prototype.send = function(mailOptions) {
                 }
             });
         } else {
-            reject(errors.badMailOptionsParams(validMailOptions.error.message));
+            reject(this.errors.badMailOptionsParams(validMailOptions.error));
         }
     });
 };
@@ -81,9 +81,9 @@ MailClient.prototype.send = function(mailOptions) {
  */
 function handleError(error) {
     if (error.code === 'EAUTH') {
-        return errors.invalidCredentials();
+        return this.errors.invalidCredentials(error);
     } else {
-        return errors.unknownError(error.message);
+        return this.errors.clientError(error);
     }
 }
 
