@@ -6,11 +6,13 @@
     "lodash.merge": "4.6.0",
     "nodemailer": "4.2.0",
     "nodemailer-direct-transport": "3.3.2",
-    "nodemailer-smtp-transport": "2.7.4",
-    "joi": "10.0.6"
+    "nodemailer-smtp-transport": "2.7.4"
   },
   "devDependencies": {
     "ut-tools": "^5.13.5"
+  },
+  "peerDependencies": {
+    "joi": "^13.1.2"
   },
   "description": "UT port mail module",
   "scripts": {
