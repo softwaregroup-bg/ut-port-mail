@@ -23,7 +23,7 @@ module.exports = function({parent}) {
         this.pull(this.exec);
     };
 
-    MailPort.prototype.exec = function(msg = {service, host, url, port, secure, username, password, from, to, subject, text, html, cc, bcc, replyTo, headers}) {
+    MailPort.prototype.exec = function(msg) {
         let configParams = {
             service: this.config.service,
             host: this.config.host,
