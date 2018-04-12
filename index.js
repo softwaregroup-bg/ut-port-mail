@@ -23,36 +23,38 @@ module.exports = function({parent}) {
         this.pull(this.exec);
     };
 
-    MailPort.prototype.exec = function({
-        service = this.config.service,
-        host = this.config.host,
-        url = this.config.url,
-        port = this.config.port,
-        secure = this.config.secure,
-        username = this.config.username,
-        password = this.config.password,
-        from, to, subject, text, html, cc, bcc, replyTo, headers
-    }) {
+    MailPort.prototype.exec = function(msg) {
+        let configParams = {
+            service: this.config.service,
+            host: this.config.host,
+            url: this.config.url,
+            port: this.config.port,
+            secure: this.config.secure,
+            username: this.config.username,
+            password: this.config.password
+        };
+        let params = Object.assign({}, configParams, msg);
+
         return new MailClient({
-            service,
-            host,
-            url,
-            port,
-            secure,
+            service: params.service,
+            host: params.host,
+            url: params.url,
+            port: params.port,
+            secure: params.secure,
             auth: {
-                user: username,
-                pass: password
+                user: params.username,
+                pass: params.password
             }
         }, errors).send({
-            from,
-            to,
-            subject,
-            text,
-            html: html || text,
-            cc,
-            bcc,
-            replyTo,
-            headers
+            from: params.from,
+            to: params.to,
+            subject: params.subject,
+            text: params.text,
+            html: params.html || params.text,
+            cc: params.cc,
+            bcc: params.bcc,
+            replyTo: params.replyTo,
+            headers: params.headers
         });
     };
 
