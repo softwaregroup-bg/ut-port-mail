@@ -1,6 +1,6 @@
 {
   "name": "ut-port-mail",
-  "version": "7.1.0-rc-cubalibre.0",
+  "version": "7.1.0-rc-cubalibre.1",
   "dependencies": {
     "lodash.assign": "4.2.0",
     "lodash.merge": "4.6.0",
