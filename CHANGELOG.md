@@ -1,3 +1,13 @@
+<a name="7.1.0"></a>
+# [7.1.0](https://github.com/softwaregroup-bg/ut-port-mail/compare/v7.0.0...v7.1.0) (2018-04-17)
+
+
+### Bug Fixes
+
+* fix joi to be peer dependency ([dc9b0e6](https://github.com/softwaregroup-bg/ut-port-mail/commit/dc9b0e6))
+
+
+
 <a name="7.0.0"></a>
 # [7.0.0](https://github.com/softwaregroup-bg/ut-port-mail/compare/v6.0.1...v7.0.0) (2017-12-06)
 
