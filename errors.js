@@ -1,13 +1,14 @@
-module.exports = create => {
-    const PortMail = create('portMail', undefined, 'Mail sending error');
-    const Client = create('client', PortMail);
+module.exports = ({defineError, getError, fetchErrors}) => {
+    if (!getError('portMail')) {
+        const PortMail = defineError('portMail', undefined, 'Mail sending error');
+        const Client = defineError('client', PortMail, 'Mail client error');
 
-    return {
-        mail: cause => new PortMail(cause),
-        validation: create('validation', PortMail, 'Mail validation error'),
-        badConstructorClientParams: create('badConstructorClientParams', Client, 'Bad client mail constructor params'),
-        invalidCredentials: create('invalidCredentials', Client, 'Invalid credentials'),
-        clientError: create('error', Client, 'Email client error'),
-        badMailOptionsParams: create('badMailOptionsParams', Client, 'Bad mail options params')
-    };
+        defineError('validation', PortMail, 'Mail validation error');
+        defineError('badConstructorClientParams', Client, 'Bad client mail constructor params');
+        defineError('invalidCredentials', Client, 'Invalid credentials');
+        defineError('error', Client, 'Email client error');
+        defineError('badMailOptionsParams', Client, 'Bad mail options params');
+    }
+
+    return fetchErrors('portMail');
 };
