@@ -11,7 +11,7 @@ module.exports = function({parent}) {
             type: 'mail',
             logLevel: 'info'
         }, config);
-        errors = errors || require('./errors')(this.defineError);
+        errors = errors || require('./errors')(this.bus.errors);
     }
 
     if (parent) {
