@@ -1,12 +1,13 @@
-# **Mail port:** `ut-port-mail` #
+# **Mail port:** `ut-port-mail`
+
 The purpose of this port is for sending mails from remote/local servers.
 
-### **Technological Dependencies** ###
+## **Technological Dependencies**
 
- - `nodemailer` - [GitHub Official Page](https://github.com/andris9/Nodemailer)
- - `ut-bus/port` - TODO add link to documentation
- - `through2` - [GitHub Official Page](https://github.com/rvagg/through2)
- - `lodash` - [Official Page](https://lodash.com/)
+- `nodemailer` - [GitHub Official Page](https://github.com/andris9/Nodemailer)
+- `ut-bus/port` - TODO add link to documentation
+- `through2` - [GitHub Official Page](https://github.com/rvagg/through2)
+- `lodash` - [Official Page](https://lodash.com/)
 
 In the UT5 implementations the Mail port is initialized in the following manner:
 
@@ -17,7 +18,8 @@ In the UT5 implementations the Mail port is initialized in the following manner:
         logLevel: 'trace',
         url: 'smtp://127.0.0.1:1234',
         service: false,
-        settings: {},//setting that came from node mailer module, they are directly applied
+        //setting that came from node mailer module, they are directly applied
+        settings: {},
         ssl: false,
         receive: function(msg) {
             return msg;
@@ -30,7 +32,7 @@ In the UT5 implementations the Mail port is initialized in the following manner:
 
 all of the properties that can be set can be seen in the Nodemailer github page.
 
-#### **Gmail example** ####
+### **Gmail example**
 
 ```javascript
 module.exports = {
