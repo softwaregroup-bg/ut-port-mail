@@ -1,29 +1,16 @@
-const merge = require('lodash.merge');
-const util = require('util');
 const MailClient = require('./client');
-let errors;
 
-module.exports = function({parent}) {
-    function MailPort({config}) {
-        parent && parent.apply(this, arguments);
-        this.config = merge({
-            id: null,
-            type: 'mail',
-            logLevel: 'info'
-        }, config);
-        errors = errors || require('./errors')(this.bus.errors);
+module.exports = ({utPort, errors}) => class MailPort extends utPort {
+    get defaults() {
+        return {
+            type: 'mail'
+        };
     }
-
-    if (parent) {
-        util.inherits(MailPort, parent);
-    }
-
-    MailPort.prototype.start = function start(callback) {
-        parent && parent.prototype.start.apply(this, arguments);
+    start() {
+        super.start(...arguments);
         this.pull(this.exec);
-    };
-
-    MailPort.prototype.exec = function({
+    }
+    exec({
         service = this.config.service,
         host = this.config.host,
         url = this.config.url,
@@ -43,7 +30,7 @@ module.exports = function({parent}) {
                 user: username,
                 pass: password
             }
-        }, errors).send({
+        }, require('./errors')(errors)).send({
             from,
             to,
             subject,
@@ -54,7 +41,5 @@ module.exports = function({parent}) {
             replyTo,
             headers
         });
-    };
-
-    return MailPort;
+    }
 };
