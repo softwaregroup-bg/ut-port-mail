@@ -1,3 +1,21 @@
+# [8.0.0](https://github.com/softwaregroup-bg/ut-port-mail/compare/v7.1.0...v8.0.0) (2019-02-02)
+
+
+### Bug Fixes
+
+* refactor as class ([#10](https://github.com/softwaregroup-bg/ut-port-mail/issues/10)) ([f915ca5](https://github.com/softwaregroup-bg/ut-port-mail/commit/f915ca5))
+* remove dependency to lodash.merge ([1d814d1](https://github.com/softwaregroup-bg/ut-port-mail/commit/1d814d1))
+* upgrade dependencies ([b4f48c2](https://github.com/softwaregroup-bg/ut-port-mail/commit/b4f48c2))
+* upgrade joi ([b3a072e](https://github.com/softwaregroup-bg/ut-port-mail/commit/b3a072e))
+* ut-error deprecations ([#9](https://github.com/softwaregroup-bg/ut-port-mail/issues/9)) ([ab75db0](https://github.com/softwaregroup-bg/ut-port-mail/commit/ab75db0))
+
+
+### BREAKING CHANGES
+
+* requires upgrade of ut-port and ut-run
+
+
+
 <a name="7.1.0"></a>
 # [7.1.0](https://github.com/softwaregroup-bg/ut-port-mail/compare/v7.0.0...v7.1.0) (2018-04-17)
 
