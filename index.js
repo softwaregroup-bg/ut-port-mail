@@ -1,6 +1,6 @@
 const MailClient = require('./client');
 
-module.exports = ({utPort, errors}) => class MailPort extends utPort {
+module.exports = ({utPort, utError}) => class MailPort extends utPort {
     get defaults() {
         return {
             type: 'mail'
@@ -30,7 +30,7 @@ module.exports = ({utPort, errors}) => class MailPort extends utPort {
                 user: username,
                 pass: password
             }
-        }, require('./errors')(errors)).send({
+        }, require('./errors')(utError)).send({
             from,
             to,
             subject,
