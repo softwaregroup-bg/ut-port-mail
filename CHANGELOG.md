@@ -1,3 +1,12 @@
+## [8.0.1](https://github.com/softwaregroup-bg/ut-port-mail/compare/v8.0.0...v8.0.1) (2019-03-01)
+
+
+### Bug Fixes
+
+* renamed property ([3c30d08](https://github.com/softwaregroup-bg/ut-port-mail/commit/3c30d08))
+
+
+
 # [8.0.0](https://github.com/softwaregroup-bg/ut-port-mail/compare/v7.1.0...v8.0.0) (2019-02-02)
 
 
