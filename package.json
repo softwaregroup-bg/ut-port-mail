@@ -9,6 +9,7 @@
     "nodemailer-smtp-transport": "2.7.4"
   },
   "devDependencies": {
+    "tap": "^12.5.3",
     "ut-tools": "^6.8.10"
   },
   "description": "UT port mail module",
