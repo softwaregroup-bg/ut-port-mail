@@ -28,7 +28,7 @@ function MailClient(params, errors) {
     this.errors = errors;
     let validParams = validateParamsAgainstSchema(params, validations.validationConstructorClientSchema);
     if (!validParams.error) {
-        let port = this.port || 465;
+        let port = params.port || 465;
         let secure = true;
         if (typeof params.secure === 'boolean') {
             secure = params.secure;
