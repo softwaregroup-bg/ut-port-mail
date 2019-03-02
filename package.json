@@ -1,6 +1,6 @@
 {
   "name": "ut-port-mail",
-  "version": "8.0.1",
+  "version": "8.0.2",
   "dependencies": {
     "joi": "13.7.0",
     "lodash.assign": "4.2.0",

@@ -1,3 +1,12 @@
+## [8.0.2](https://github.com/softwaregroup-bg/ut-port-mail/compare/v8.0.1...v8.0.2) (2019-03-02)
+
+
+### Bug Fixes
+
+* handle params.port ([66a312a](https://github.com/softwaregroup-bg/ut-port-mail/commit/66a312a))
+
+
+
 ## [8.0.1](https://github.com/softwaregroup-bg/ut-port-mail/compare/v8.0.0...v8.0.1) (2019-03-01)
 
 
