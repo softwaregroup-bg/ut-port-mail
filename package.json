@@ -1,6 +1,6 @@
 {
   "name": "ut-port-mail",
-  "version": "7.1.1-internet-banking.0",
+  "version": "7.1.1-internet-banking.1",
   "dependencies": {
     "lodash.assign": "4.2.0",
     "lodash.merge": "4.6.0",
