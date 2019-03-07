@@ -31,18 +31,28 @@ module.exports = function({parent}) {
         secure = this.config.secure,
         username = this.config.username,
         password = this.config.password,
+        tls = this.config.tls,
+        ignoreTLS = this.config.settings.ignoreTLS,
+        requireTLS = this.config.settings.ignoreTLS,
         from, to, subject, text, html, cc, bcc, replyTo, headers
     }) {
+        var auth = null;
+        if (username && password) {
+            auth = {
+                user: username,
+                pass: password
+            };
+        }
         return new MailClient({
             service,
             host,
             url,
             port,
             secure,
-            auth: {
-                user: username,
-                pass: password
-            }
+            auth,
+            tls,
+            ignoreTLS,
+            requireTLS
         }, errors).send({
             from,
             to,

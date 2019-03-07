@@ -40,7 +40,10 @@ function MailClient(params, errors) {
             host: params.host,
             port: port,
             secure: secure,
-            auth: params.auth
+            auth: params.auth,
+            tls: params.tls,
+            ignoreTLS: params.ignoreTLS,
+            requireTLS: params.requireTLS
         };
         this.transporter = nodemailer.createTransport(this.transportParams);
     } else {

@@ -12,7 +12,10 @@ const validationConstructorClientSchema = Joi.object().keys({
     auth: Joi.object().keys({
         user: Joi.string().allow(null),
         pass: Joi.string().allow(null)
-    }).allow(null)
+    }).allow(null),
+    tls: Joi.object(),
+    requireTLS: Joi.boolean(),
+    ignoreTLS: Joi.boolean()
 });
 
 /**
