@@ -18,7 +18,7 @@ module.exports = ({utPort, utError}) => class MailPort extends utPort {
         secure = this.config.secure,
         username = this.config.username,
         password = this.config.password,
-        from, to, subject, text, html, cc, bcc, replyTo, headers
+        from, to, subject, text, html, body, cc, bcc, replyTo, headers
     }) {
         return new MailClient({
             service,
@@ -35,7 +35,7 @@ module.exports = ({utPort, utError}) => class MailPort extends utPort {
             to,
             subject,
             text,
-            html: html || text,
+            html: html || body || text,
             cc,
             bcc,
             replyTo,
