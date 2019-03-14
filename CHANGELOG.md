@@ -1,3 +1,12 @@
+# [8.1.0](https://github.com/softwaregroup-bg/ut-port-mail/compare/v8.0.2...v8.1.0) (2019-03-14)
+
+
+### Features
+
+* allow passing .body ([27b0e10](https://github.com/softwaregroup-bg/ut-port-mail/commit/27b0e10))
+
+
+
 ## [8.0.2](https://github.com/softwaregroup-bg/ut-port-mail/compare/v8.0.1...v8.0.2) (2019-03-02)
 
 
