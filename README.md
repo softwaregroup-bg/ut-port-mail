@@ -2,13 +2,6 @@
 
 The purpose of this port is for sending mails from remote/local servers.
 
-## **Technological Dependencies**
-
-- `nodemailer` - [GitHub Official Page](https://github.com/andris9/Nodemailer)
-- `ut-bus/port` - TODO add link to documentation
-- `through2` - [GitHub Official Page](https://github.com/rvagg/through2)
-- `lodash` - [Official Page](https://lodash.com/)
-
 In the UT5 implementations the Mail port is initialized in the following manner:
 
 ```javascript
