@@ -1,3 +1,12 @@
+## [8.2.1](https://github.com/softwaregroup-bg/ut-port-mail/compare/v8.2.0...v8.2.1) (2019-04-12)
+
+
+### Bug Fixes
+
+* validations ([9a9451d](https://github.com/softwaregroup-bg/ut-port-mail/commit/9a9451d))
+
+
+
 # [8.2.0](https://github.com/softwaregroup-bg/ut-port-mail/compare/v8.1.1...v8.2.0) (2019-04-12)
 
 
