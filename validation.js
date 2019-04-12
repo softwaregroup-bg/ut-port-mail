@@ -35,12 +35,17 @@ const validateMailOptionsSchema = Joi.object().keys({
     ).allow(null),
     attachments: Joi.array().items(
         Joi.object().keys({
-            filename: Joi.string().required(),
-            content: Joi.string().required(),
-            path: Joi.string().required(),
-            contentType: Joi.string().required(),
-            encoding: Joi.string().required()
-        })
+            filename: Joi.string(),
+            content: Joi.string(),
+            path: Joi.string(),
+            href: Joi.string(),
+            contentType: Joi.string(),
+            contentDisposition: Joi.string(),
+            cid: Joi.string(),
+            encoding: Joi.string(),
+            headers: Joi.object(),
+            raw: Joi.string()
+        }).or('content', 'path', 'href', 'raw')
     ).allow(null)
 });
 
