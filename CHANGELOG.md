@@ -1,3 +1,12 @@
+# [8.2.0](https://github.com/softwaregroup-bg/ut-port-mail/compare/v8.1.1...v8.2.0) (2019-04-12)
+
+
+### Features
+
+* add attachments to mail ([b24dc90](https://github.com/softwaregroup-bg/ut-port-mail/commit/b24dc90))
+
+
+
 ## [8.1.1](https://github.com/softwaregroup-bg/ut-port-mail/compare/v8.1.0...v8.1.1) (2019-03-22)
 
 
