@@ -1,3 +1,12 @@
+# [8.3.0](https://github.com/softwaregroup-bg/ut-port-mail/compare/v8.2.1...v8.3.0) (2019-07-17)
+
+
+### Features
+
+* allow more nodemailer options ([c0d2e06](https://github.com/softwaregroup-bg/ut-port-mail/commit/c0d2e06))
+
+
+
 ## [8.2.1](https://github.com/softwaregroup-bg/ut-port-mail/compare/v8.2.0...v8.2.1) (2019-04-12)
 
 
