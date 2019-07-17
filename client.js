@@ -26,21 +26,14 @@ function validateParamsAgainstSchema(params, schema) {
  */
 function MailClient(params, errors) {
     this.errors = errors;
-    let validParams = validateParamsAgainstSchema(params, validations.validationConstructorClientSchema);
+    const validParams = validateParamsAgainstSchema(params, validations.validationConstructorClientSchema);
     if (!validParams.error) {
-        let port = params.port || 465;
-        let secure = true;
-        if (typeof params.secure === 'boolean') {
-            secure = params.secure;
-        } else {
-            secure = port === 465;
-        }
+        const port = params.port || 465;
         this.transportParams = {
-            service: serviceMapper[params.service],
-            host: params.host,
-            port: port,
-            secure: secure,
-            auth: params.auth
+            port,
+            secure: port === 465,
+            ...params,
+            service: serviceMapper[params.service] || params.service
         };
         this.transporter = nodemailer.createTransport(this.transportParams);
     } else {
