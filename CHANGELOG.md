@@ -1,3 +1,13 @@
+## [8.3.2](https://github.com/softwaregroup-bg/ut-port-mail/compare/v8.3.1...v8.3.2) (2019-07-18)
+
+
+### Bug Fixes
+
+* enable no auth ([e36da8a](https://github.com/softwaregroup-bg/ut-port-mail/commit/e36da8a))
+* typo ([0224083](https://github.com/softwaregroup-bg/ut-port-mail/commit/0224083))
+
+
+
 ## [8.3.1](https://github.com/softwaregroup-bg/ut-port-mail/compare/v8.3.0...v8.3.1) (2019-07-18)
 
 
