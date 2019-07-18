@@ -50,7 +50,7 @@ module.exports = ({utPort, utError}) => {
                 url,
                 port,
                 secure,
-                auth: {
+                auth: (username || password) && {
                     user: username,
                     pass: password
                 },
