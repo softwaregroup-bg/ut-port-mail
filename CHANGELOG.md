@@ -1,3 +1,12 @@
+## [8.3.1](https://github.com/softwaregroup-bg/ut-port-mail/compare/v8.3.0...v8.3.1) (2019-07-18)
+
+
+### Bug Fixes
+
+* additional mail client options ([6f9d1f8](https://github.com/softwaregroup-bg/ut-port-mail/commit/6f9d1f8))
+
+
+
 # [8.3.0](https://github.com/softwaregroup-bg/ut-port-mail/compare/v8.2.1...v8.3.0) (2019-07-17)
 
 
