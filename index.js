@@ -1,6 +1,6 @@
 const MailClient = require('./client');
 module.exports = ({utPort, utError}) => {
-    const additionalMailCLientOptions = {};
+    const additionalMailClientOptions = {};
     return class MailPort extends utPort {
         get defaults() {
             return {
@@ -29,7 +29,7 @@ module.exports = ({utPort, utError}) => {
                 'proxy'
             ].forEach(option => {
                 const value = this.config[option];
-                if (typeof value !== 'undefined') additionalMailCLientOptions[option] = value;
+                if (typeof value !== 'undefined') additionalMailClientOptions[option] = value;
             });
             this.pull(this.exec);
             return result;
@@ -54,7 +54,7 @@ module.exports = ({utPort, utError}) => {
                     user: username,
                     pass: password
                 },
-                ...additionalMailCLientOptions
+                ...additionalMailClientOptions
             }, require('./errors')(utError)).send({
                 from,
                 to,
