@@ -24,7 +24,7 @@ function validateParamsAgainstSchema(params, schema) {
  *
  * @param {Object} params
  */
-function MailClient(params, errors) {
+function MailClient(params, errors, logger, debug) {
     this.errors = errors;
     const validParams = validateParamsAgainstSchema(params, validations.validationConstructorClientSchema);
     if (!validParams.error) {
@@ -32,6 +32,8 @@ function MailClient(params, errors) {
         this.transportParams = {
             port,
             secure: port === 465,
+            logger,
+            debug,
             ...params,
             service: serviceMapper[params.service] || params.service
         };

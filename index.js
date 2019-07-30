@@ -1,3 +1,4 @@
+const util = require('util');
 const MailClient = require('./client');
 module.exports = ({utPort, utError}) => {
     const additionalMailClientOptions = {};
@@ -44,6 +45,27 @@ module.exports = ({utPort, utError}) => {
             password = this.config.password,
             from, to, subject, text, html, body, cc, bcc, replyTo, headers, attachments
         }) {
+            const handler = level => {
+                const log = this.log[level];
+                const trace = this.log.trace;
+                if (log) {
+                    return ({name, ...data}, message, ...args) =>
+                        ((['client', 'server', 'message'].includes(data.tnx) && trace) || log)
+                            .call(this.log, message && util.format(message, ...args), name ? {label: name, ...data} : {...data});
+                } else {
+                    return () => false;
+                }
+            };
+
+            const logger = {
+                trace: handler('trace'),
+                debug: handler('debug'),
+                info: handler('info'),
+                warn: handler('warn'),
+                error: handler('error'),
+                fatal: handler('fatal')
+            };
+
             return new MailClient({
                 service,
                 host,
@@ -55,7 +77,7 @@ module.exports = ({utPort, utError}) => {
                     pass: password
                 },
                 ...additionalMailClientOptions
-            }, require('./errors')(utError)).send({
+            }, require('./errors')(utError), logger, !!logger.trace).send({
                 from,
                 to,
                 subject,
