@@ -1,3 +1,12 @@
+# [8.4.0](https://github.com/softwaregroup-bg/ut-port-mail/compare/v8.3.2...v8.4.0) (2019-07-30)
+
+
+### Features
+
+* handle logging ([c87b54b](https://github.com/softwaregroup-bg/ut-port-mail/commit/c87b54b))
+
+
+
 ## [8.3.2](https://github.com/softwaregroup-bg/ut-port-mail/compare/v8.3.1...v8.3.2) (2019-07-18)
 
 
