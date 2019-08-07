@@ -1,3 +1,12 @@
+## [8.4.1](https://github.com/softwaregroup-bg/ut-port-mail/compare/v8.4.0...v8.4.1) (2019-08-07)
+
+
+### Bug Fixes
+
+* remove trace logging from debug level ([18cba85](https://github.com/softwaregroup-bg/ut-port-mail/commit/18cba85))
+
+
+
 # [8.4.0](https://github.com/softwaregroup-bg/ut-port-mail/compare/v8.3.2...v8.4.0) (2019-07-30)
 
 
