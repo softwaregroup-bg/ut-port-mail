@@ -49,9 +49,10 @@ module.exports = ({utPort, utError}) => {
                 const log = this.log[level];
                 const trace = this.log.trace;
                 if (log) {
-                    return ({name, ...data}, message, ...args) =>
-                        ((['client', 'server', 'message'].includes(data.tnx) && trace) || log)
-                            .call(this.log, message && util.format(message, ...args), name ? {label: name, ...data} : {...data});
+                    return ({name, ...data}, message, ...args) => {
+                        const method = ['client', 'server', 'message'].includes(data.tnx) ? trace : log;
+                        return method && method.call(this.log, message && util.format(message, ...args), name ? {label: name, ...data} : {...data});
+                    };
                 } else {
                     return () => false;
                 }
