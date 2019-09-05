@@ -1,3 +1,12 @@
+## [8.4.2](https://github.com/softwaregroup-bg/ut-port-mail/compare/v8.4.1...v8.4.2) (2019-09-05)
+
+
+### Bug Fixes
+
+* add config schema ([d847e93](https://github.com/softwaregroup-bg/ut-port-mail/commit/d847e93))
+
+
+
 ## [8.4.1](https://github.com/softwaregroup-bg/ut-port-mail/compare/v8.4.0...v8.4.1) (2019-08-07)
 
 
