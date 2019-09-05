@@ -8,6 +8,42 @@ module.exports = ({utPort, utError}) => {
                 type: 'mail'
             };
         }
+        get schema() {
+            return {
+                type: 'object',
+                properties: {
+                    logLevel: {
+                        type: 'string',
+                        enum: ['error', 'warning', 'info', 'debug', 'trace'],
+                        default: 'info'
+                    },
+                    service: {type: 'string'},
+                    username: {type: 'string'},
+                    password: {type: 'string'},
+                    host: {type: 'string'},
+                    port: {type: ['integer', 'null']},
+                    secure: {type: 'boolean'},
+                    ignoreTLS: {type: 'boolean'}
+                }
+            };
+        }
+        get uiSchema() {
+            return {
+                password: {
+                    'ui:emptyValue': '',
+                    'ui:widget': 'password'
+                },
+                username: {
+                    'ui:emptyValue': ''
+                },
+                host: {
+                    'ui:emptyValue': ''
+                },
+                service: {
+                    'ui:emptyValue': ''
+                }
+            };
+        }
         async start(...params) {
             const result = await super.start(...params);
             [
