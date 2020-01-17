@@ -1,3 +1,7 @@
+## [8.4.3](https://github.com/softwaregroup-bg/ut-port-mail/compare/v8.4.2...v8.4.3) (2020-01-17)
+
+
+
 ## [8.4.2](https://github.com/softwaregroup-bg/ut-port-mail/compare/v8.4.1...v8.4.2) (2019-09-05)
 
 
