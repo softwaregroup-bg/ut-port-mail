@@ -4,13 +4,15 @@
   "dependencies": {
     "joi": "13.7.0",
     "lodash.assign": "4.2.0",
-    "nodemailer": "4.2.0",
+    "nodemailer": "6.4.2",
     "nodemailer-direct-transport": "3.3.2",
     "nodemailer-smtp-transport": "2.7.4"
   },
   "devDependencies": {
-    "tap": "^12.7.0",
-    "ut-tools": "^6.30.5"
+    "tap": "^14.10.6",
+    "ut-smtp-sim": "^7.0.1",
+    "ut-run": "^10.18.1",
+    "ut-tools": "^6.31.2"
   },
   "description": "UT port mail module",
   "scripts": {

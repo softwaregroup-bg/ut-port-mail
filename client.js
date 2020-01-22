@@ -39,7 +39,7 @@ function MailClient(params, errors, logger, debug) {
         };
         this.transporter = nodemailer.createTransport(this.transportParams);
     } else {
-        throw errors['portMail.client.badConstructorClientParams'](validParams.error);
+        throw errors['portMail.invalidConfiguration'](validParams.error);
     }
 }
 
@@ -63,7 +63,7 @@ MailClient.prototype.send = function(mailOptions) {
                 }
             });
         } else {
-            reject(this.errors['portMail.client.badMailOptionsParams'](validMailOptions.error));
+            reject(this.errors['portMail.invalidEmail'](validMailOptions.error));
         }
     });
 };
@@ -76,9 +76,9 @@ MailClient.prototype.send = function(mailOptions) {
  */
 function handleError(error) {
     if (error.code === 'EAUTH') {
-        return this.errors['portMail.client.invalidCredentials'](error);
+        return this.errors['portMail.invalidCredentials'](error);
     } else {
-        return this.errors['portMail.client.error'](error);
+        return this.errors['portMail'](error);
     }
 }
 
