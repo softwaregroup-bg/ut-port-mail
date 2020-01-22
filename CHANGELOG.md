@@ -1,3 +1,12 @@
+## [8.4.4](https://github.com/softwaregroup-bg/ut-port-mail/compare/v8.4.3...v8.4.4) (2020-01-22)
+
+
+### Bug Fixes
+
+* update deps, add tests ([0789d54](https://github.com/softwaregroup-bg/ut-port-mail/commit/0789d54))
+
+
+
 ## [8.4.3](https://github.com/softwaregroup-bg/ut-port-mail/compare/v8.4.2...v8.4.3) (2020-01-17)
 
 
