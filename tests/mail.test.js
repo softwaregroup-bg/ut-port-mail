@@ -37,7 +37,9 @@ require('ut-run').run({
                 cc: 'cc@domain.com',
                 bcc: 'bcc@domain.coms',
                 replyTo: 'no-reply@domain.com',
-                attachments: ''
+                attachments: [{
+                    path: __filename
+                }]
             },
             result: (result, assert) => {
                 assert.equals(result.response, '250 OK: message queued');

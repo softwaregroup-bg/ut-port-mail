@@ -124,9 +124,7 @@ module.exports = ({utPort, utError}) => {
                 bcc,
                 replyTo,
                 headers,
-                attachments: [{
-                    path: __filename
-                }]
+                attachments
             });
         }
     };
