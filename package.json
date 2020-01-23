@@ -11,7 +11,7 @@
   "devDependencies": {
     "tap": "^14.10.6",
     "ut-smtp-sim": "^7.0.1",
-    "ut-run": "^10.18.1",
+    "ut-run": "^10.18.2",
     "ut-tools": "^6.31.2",
     "why-is-node-running": "^2.1.0"
   },

@@ -1,12 +1,13 @@
-const sim = require('ut-smtp-sim')()();
 require('ut-run').run({
     main: [
-        require('..'),
-        ...sim.orchestrator(),
-        ...sim.adapter()
+        () => ({
+            test: () => [require('..')]
+        }),
+        require('ut-smtp-sim')()
     ],
     method: 'unit',
     config: {
+        test: true,
         MailPort: {
             logLevel: 'debug',
             namespace: 'mail',
@@ -14,11 +15,15 @@ require('ut-run').run({
             maxConnections: 5,
             port: 8025
         },
-        smtp: {
-            port: 8025,
-            hook: 'smtpSim',
-            server: {
-                disabledCommands: ['STARTTLS']
+        utSmtpSim: {
+            orchestrator: true,
+            adapter: true,
+            smtp: {
+                port: 8025,
+                hook: 'smtpSim',
+                server: {
+                    disabledCommands: ['STARTTLS']
+                }
             }
         }
     },
