@@ -1,3 +1,12 @@
+## [8.4.5](https://github.com/softwaregroup-bg/ut-port-mail/compare/v8.4.4...v8.4.5) (2020-01-23)
+
+
+### Bug Fixes
+
+* move test attachment ([27d194a](https://github.com/softwaregroup-bg/ut-port-mail/commit/27d194a))
+
+
+
 ## [8.4.4](https://github.com/softwaregroup-bg/ut-port-mail/compare/v8.4.3...v8.4.4) (2020-01-22)
 
 
