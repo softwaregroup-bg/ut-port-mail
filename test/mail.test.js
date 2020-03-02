@@ -9,7 +9,6 @@ require('ut-run').run({
     config: {
         test: true,
         MailPort: {
-            logLevel: 'debug',
             namespace: 'mail',
             host: 'localhost',
             maxConnections: 5,

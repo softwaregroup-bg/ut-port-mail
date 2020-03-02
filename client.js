@@ -15,7 +15,7 @@ const serviceMapper = {
  * @returns {Object}
  */
 function validateParamsAgainstSchema(params, schema) {
-    let result = Joi.validate(params, schema);
+    const result = Joi.validate(params, schema);
     return result;
 }
 
@@ -50,7 +50,7 @@ function MailClient(params, errors, logger, debug) {
  */
 MailClient.prototype.send = function(mailOptions) {
     return new Promise((resolve, reject) => {
-        let validMailOptions = validateParamsAgainstSchema(mailOptions, validations.validateMailOptionsSchema);
+        const validMailOptions = validateParamsAgainstSchema(mailOptions, validations.validateMailOptionsSchema);
         if (!validMailOptions.error) {
             this.transporter.sendMail(mailOptions, (error, info) => {
                 if (error) {
@@ -78,7 +78,7 @@ function handleError(error) {
     if (error.code === 'EAUTH') {
         return this.errors['portMail.invalidCredentials'](error);
     } else {
-        return this.errors['portMail'](error);
+        return this.errors.portMail(error);
     }
 }
 
