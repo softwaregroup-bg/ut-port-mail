@@ -79,11 +79,9 @@ module.exports = ({utPort, utError}) => {
             secure = this.config.secure,
             username = this.config.username,
             password = this.config.password,
-            from, to, subject, text, html, body, cc, bcc, replyTo, headers, attachments
+            from = this.config.from,
+            to, subject, text, html, body, cc, bcc, replyTo, headers, attachments
         }) {
-            if (this.config.from) {
-                from = this.config.from;
-            }
             const handler = level => {
                 const log = this.log[level];
                 const trace = this.log.trace;
