@@ -1,3 +1,12 @@
+# [8.5.0](https://github.com/softwaregroup-bg/ut-port-mail/compare/v8.4.7...v8.5.0) (2020-07-10)
+
+
+### Features
+
+* allow from to be set in config ([152f774](https://github.com/softwaregroup-bg/ut-port-mail/commit/152f7746fa5ab2abb71603a61c5fa6bcc8a45c83))
+
+
+
 ## [8.4.7](https://github.com/softwaregroup-bg/ut-port-mail/compare/v8.4.6...v8.4.7) (2020-03-02)
 
 
