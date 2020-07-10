@@ -19,7 +19,8 @@ module.exports = ({utPort, utError}) => {
                     host: {type: 'string'},
                     port: {type: ['integer', 'null']},
                     secure: {type: 'boolean'},
-                    ignoreTLS: {type: 'boolean'}
+                    ignoreTLS: {type: 'boolean'},
+                    from: {type: 'string'}
                 }
             };
         }
@@ -78,7 +79,8 @@ module.exports = ({utPort, utError}) => {
             secure = this.config.secure,
             username = this.config.username,
             password = this.config.password,
-            from, to, subject, text, html, body, cc, bcc, replyTo, headers, attachments
+            from = this.config.from,
+            to, subject, text, html, body, cc, bcc, replyTo, headers, attachments
         }) {
             const handler = level => {
                 const log = this.log[level];
