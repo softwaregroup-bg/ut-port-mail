@@ -1,6 +1,8 @@
 const util = require('util');
 const MailClient = require('./client');
-module.exports = ({utPort, utError}) => {
+module.exports = ({utPort, utError, joi, version}) => {
+    if (!version || !version('10.38.1')) throw new Error('ut-port-mail requires ut-run >= 10.38.1');
+
     const additionalMailClientOptions = {};
     return class MailPort extends utPort {
         get defaults() {
@@ -115,7 +117,7 @@ module.exports = ({utPort, utError}) => {
                     pass: password
                 },
                 ...additionalMailClientOptions
-            }, require('./errors')(utError), logger, !!logger.trace).send({
+            }, require('./errors')(utError), logger, !!logger.trace, joi).send({
                 from,
                 to,
                 subject,
