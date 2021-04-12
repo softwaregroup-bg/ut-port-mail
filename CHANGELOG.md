@@ -1,3 +1,12 @@
+# [8.6.0](https://github.com/softwaregroup-bg/ut-port-mail/compare/v8.5.0...v8.6.0) (2021-04-12)
+
+
+### Features
+
+* upgrade to use framework's joi ([5b29401](https://github.com/softwaregroup-bg/ut-port-mail/commit/5b2940186f07a90a0148ade8848e16c740f3dcd6))
+
+
+
 # [8.5.0](https://github.com/softwaregroup-bg/ut-port-mail/compare/v8.4.7...v8.5.0) (2020-07-10)
 
 
