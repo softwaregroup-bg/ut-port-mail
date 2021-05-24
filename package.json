@@ -2,13 +2,13 @@
   "name": "ut-port-mail",
   "version": "8.6.0",
   "dependencies": {
-    "nodemailer": "6.4.2",
+    "nodemailer": "6.6.1",
     "nodemailer-direct-transport": "3.3.2",
     "nodemailer-smtp-transport": "2.7.4"
   },
   "devDependencies": {
-    "tap": "^14.10.6",
-    "ut-smtp-sim": "^7.1.1",
+    "tap": "^14.11.0",
+    "ut-smtp-sim": "^7.1.3",
     "ut-run": "^10.52.1",
     "ut-tools": "^6.37.0",
     "why-is-node-running": "^2.2.0"
