@@ -1,3 +1,7 @@
+## [8.6.1](https://github.com/softwaregroup-bg/ut-port-mail/compare/v8.6.0...v8.6.1) (2021-05-24)
+
+
+
 # [8.6.0](https://github.com/softwaregroup-bg/ut-port-mail/compare/v8.5.0...v8.6.0) (2021-04-12)
 
 
