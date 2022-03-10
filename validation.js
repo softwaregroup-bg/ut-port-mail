@@ -25,7 +25,7 @@ module.exports = joi => ({
         auth: joi.object().keys({
             user: joi.string().allow(null),
             pass: joi.string().allow(null)
-        }).allow(null)
+        }).allow(null, false)
     }),
     mail: joi.object().keys({
         from: joi.string().required(),
