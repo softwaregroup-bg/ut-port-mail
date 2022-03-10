@@ -1,3 +1,12 @@
+## [8.6.2](https://github.com/softwaregroup-bg/ut-port-mail/compare/v8.6.1...v8.6.2) (2022-03-10)
+
+
+### Bug Fixes
+
+* allow no authentication ([0bf8a53](https://github.com/softwaregroup-bg/ut-port-mail/commit/0bf8a53d2a3eb16bfcf224b5a88ea29e1f6ff53d))
+
+
+
 ## [8.6.1](https://github.com/softwaregroup-bg/ut-port-mail/compare/v8.6.0...v8.6.1) (2021-05-24)
 
 

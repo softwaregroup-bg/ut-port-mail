@@ -1,6 +1,6 @@
 {
   "name": "ut-port-mail",
-  "version": "8.6.1",
+  "version": "8.6.2",
   "dependencies": {
     "nodemailer": "6.6.1",
     "nodemailer-direct-transport": "3.3.2",
