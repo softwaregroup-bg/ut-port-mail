@@ -1,3 +1,12 @@
+## [8.6.3](https://github.com/softwaregroup-bg/ut-port-mail/compare/v8.6.2...v8.6.3) (2022-03-23)
+
+
+### Bug Fixes
+
+* CVE-2021-23400 ([81664c0](https://github.com/softwaregroup-bg/ut-port-mail/commit/81664c045cb957c6173492ce8dd489654f1e4f1a))
+
+
+
 ## [8.6.2](https://github.com/softwaregroup-bg/ut-port-mail/compare/v8.6.1...v8.6.2) (2022-03-10)
 
 
